@@ -1,8 +1,8 @@
-name := "npmaven"
+name := "template for lift on heroku"
 
 version := "0.0.1"
 
-organization := "org.npmaven"
+organization := ""
 
 scalaVersion := "2.11.6"
 
@@ -11,7 +11,7 @@ resolvers ++= Seq(
   "releases"        at "https://oss.sonatype.org/content/repositories/releases"
 )
 
-seq(webSettings :_*)
+enablePlugins(JettyPlugin)
 
 unmanagedResourceDirectories in Test <+= (baseDirectory) { _ / "src/main/webapp" }
 

@@ -21,10 +21,9 @@ liftVersion := "3.1.0"
 
 libraryDependencies ++= {
   val lv = liftVersion.value
-  val le = liftEdition.value
   Seq(
     "net.liftweb"             %% "lift-webkit"              % liftVersion.value     % "compile",
-    "net.liftmodules"         %% ("lift-jquery-module_"+le) % "2.10"        % "compile", // https://github.com/karma4u101/lift-jquery-module
+    "net.liftmodules"         %% "lift-jquery-module_3.1" % "2.10"        % "compile", // https://github.com/karma4u101/lift-jquery-module
     "org.eclipse.jetty"       % "jetty-webapp"              % "9.2.7.v20150116"     % "compile",
     "org.eclipse.jetty"       % "jetty-plus"                % "9.2.7.v20150116"     % "container,test", // For Jetty Config
     "org.eclipse.jetty.orbit" % "javax.servlet"             % "3.0.0.v201112011016" % "container,test" artifacts Artifact("javax.servlet", "jar", "jar"),
@@ -34,5 +33,8 @@ libraryDependencies ++= {
 }
 
 enablePlugins(JavaAppPackaging)
+
+enablePlugins(HerokuDeploy)
+herokuAppName := "<insert heroku app name>"
 
 bashScriptConfigLocation := Some("${app_home}/../conf/jvmopts")

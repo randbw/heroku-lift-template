@@ -17,7 +17,7 @@ lazy val root = project
 
 enablePlugins(JettyPlugin)
 
-unmanagedResourceDirectories in Test <+= (baseDirectory) { _ / "src/main/webapp" }
+unmanagedResourceDirectories in Test += (baseDirectory) { _ / "src/main/webapp" }.value
 
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 

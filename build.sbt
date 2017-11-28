@@ -11,18 +11,21 @@ resolvers ++= Seq(
   "releases"        at "https://oss.sonatype.org/content/repositories/releases"
 )
 
+lazy val root = project
+  .in(file("."))
+  .settings(Defaults.coreDefaultSettings)
+
 enablePlugins(JettyPlugin)
 
 unmanagedResourceDirectories in Test <+= (baseDirectory) { _ / "src/main/webapp" }
 
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 
-liftVersion := "3.1.0"
+val liftVersion = "3.1.0"
 
 libraryDependencies ++= {
-  val lv = liftVersion.value
   Seq(
-    "net.liftweb"             %% "lift-webkit"              % liftVersion.value     % "compile",
+    "net.liftweb"             %% "lift-webkit"              % liftVersion     % "compile",
     "net.liftmodules"         %% "lift-jquery-module_3.1" % "2.10"        % "compile", // https://github.com/karma4u101/lift-jquery-module
     "org.eclipse.jetty"       % "jetty-webapp"              % "9.2.7.v20150116"     % "compile",
     "org.eclipse.jetty"       % "jetty-plus"                % "9.2.7.v20150116"     % "container,test", // For Jetty Config
